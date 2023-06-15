@@ -6,64 +6,45 @@ from shutil import rmtree
 import subprocess as sp
 import sys
 from typing import Dict, Tuple, Optional, IO
+import librosa
+import numpy as np
+import soundfile as sf
+import demucs.separate
+from demucs import apply 
+# import apply_model, BagOfModels
+from demucs import audio 
+# AudioFile, convert_audio, save_audio
+from demucs import htdemucs
+# HTDemucs
+from demucs import pretrained
+# get_model, add_model_flags, ModelLoadingError
+import torch
+import torchaudio as ta
+class SpeechSeperate():
+    def __init__(self, config) -> None:
+        """
+        Require config:
+        device: cpu or cuda
+        """
+        # get model
+        self.model = pretrained.get_model(name="htdemucs")
+        self.device = config['device']
+        
+    def process(self, input_signal: np.ndarray, sr=16000) -> np.ndarray:
+        print(self.model.sources)
 
+        input_signal_tensor = torch.from_numpy(input_signal).unsqueeze(0).to(self.device)
+        # convert to same channel with model: htdemucs use 2 channels
+        input_signal_tensor = audio.convert_audio(input_signal_tensor, sr, self.model.samplerate ,self.model.audio_channels)
 
-def find_files(in_path):
-    out = []
-    for file in Path(in_path).iterdir():
-        if file.suffix.lower().lstrip(".") in extensions:
-            out.append(file)
-    return out
+        # apply model
+        output_signal_tensor = apply.apply_model(self.model, input_signal_tensor[None], device=self.device)[0]
 
-def copy_process_streams(process: sp.Popen):
-    def raw(stream: Optional[IO[bytes]]) -> IO[bytes]:
-        assert stream is not None
-        if isinstance(stream, io.BufferedIOBase):
-            stream = stream.raw
-        return stream
-
-    p_stdout, p_stderr = raw(process.stdout), raw(process.stderr)
-    stream_by_fd: Dict[int, Tuple[IO[bytes], io.StringIO, IO[str]]] = {
-        p_stdout.fileno(): (p_stdout, sys.stdout),
-        p_stderr.fileno(): (p_stderr, sys.stderr),
-    }
-    fds = list(stream_by_fd.keys())
-
-    while fds:
-        # `select` syscall will wait until one of the file descriptors has content.
-        ready, _, _ = select.select(fds, [], [])
-        for fd in ready:
-            p_stream, std = stream_by_fd[fd]
-            raw_buf = p_stream.read(2 ** 16)
-            if not raw_buf:
-                fds.remove(fd)
-                continue
-            buf = raw_buf.decode()
-            std.write(buf)
-            std.flush()
-
-def separate(inp=None, outp=None):
-    inp = inp
-    outp = outp
-    cmd = ["python3", "-m", "demucs.separate", "-o", str(outp), "-n", model]
-    if mp3:
-        cmd += ["--mp3", f"--mp3-bitrate={mp3_rate}"]
-    if float32:
-        cmd += ["--float32"]
-    if int24:
-        cmd += ["--int24"]
-    if two_stems is not None:
-        cmd += [f"--two-stems={two_stems}"]
-    files = [str(f) for f in find_files(inp)]
-    if not files:
-        print(f"No valid audio files in {inp}")
-        return
-    print("Going to separate the files:")
-    print('\n'.join(files))
-    print("With command: ", " ".join(cmd))
-    p = sp.Popen(cmd + files, stdout=sp.PIPE, stderr=sp.PIPE)
-    copy_process_streams(p)
-    p.wait()
-    if p.returncode != 0:
-        print("Command failed, something went wrong.")
-
+        # convert to same channel with input signal
+        output_signal_tensor = audio.convert_audio(output_signal_tensor, self.model.samplerate, sr, 1)
+        # convert to numpy array
+        output_signal_tensor = output_signal_tensor[-1].squeeze(0).cpu().numpy() # the last one is vocals
+        
+        return output_signal_tensor
+    
+    
