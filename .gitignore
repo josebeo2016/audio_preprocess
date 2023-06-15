@@ -170,4 +170,4 @@ CMEval/
 *.mp3
 *.flac
 *.m4a
-*.test
+*.test/*
