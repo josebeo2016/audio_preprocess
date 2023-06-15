@@ -1,6 +1,7 @@
-# Audio Preprocess library for Deepfake audio detection system
+# Audio Preprocess Library for Deepfake Audio Detection System
 
 ## Directories:
+
 ### audio_preprocess
 All the libraries will be stored here. Each module will seperatly be stored in each python file.
 Note that: After finish code of your module, please add the caller in `__init__.py`, For example:
