@@ -164,3 +164,10 @@ CMEval/
 
 #model files
 *.pth
+
+# files and folders
+*.wav
+*.mp3
+*.flac
+*.m4a
+*.test
