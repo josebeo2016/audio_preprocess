@@ -3,8 +3,7 @@ name: Create Release with Changelog
 on:
   push:
     tags:
-      - *
-  
+      - '*'
 jobs:
   build:
     name: Create Release
