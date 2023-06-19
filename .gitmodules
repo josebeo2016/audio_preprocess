@@ -1,0 +1,3 @@
+[submodule "denoiser"]
+	path = denoiser
+	url = git@github.com:facebookresearch/denoiser.git
