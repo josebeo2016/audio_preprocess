@@ -4,7 +4,7 @@ import os
 import torch
 import soundfile as sf
 BASE_DIR = os.path.dirname(os.path.realpath(__file__))
-SAMPLE_WAV = os.path.join(BASE_DIR,"data/LA_T_5260333_vocals.wav")
+SAMPLE_WAV = os.path.join(BASE_DIR,"data/LA_T_5260333.wav")
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 def test_nonspeechtrim():
     npt = NonspeechTrim()
