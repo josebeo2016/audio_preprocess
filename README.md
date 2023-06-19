@@ -1,5 +1,8 @@
 # Audio Preprocess Library for Deepfake Audio Detection System
 
+![Github CI](https://github.com/josebeo2016/audio_preprocess/actions/workflows/ci.yaml/badge.svg)
+![Notify](https://github.com/josebeo2016/audio_preprocess/actions/workflows/notify.yaml/badge.svg)
+
 ## Directories:
 
 ### audio_preprocess
