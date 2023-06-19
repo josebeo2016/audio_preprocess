@@ -43,8 +43,8 @@ class SpeechSeperate():
         # convert to same channel with input signal
         output_signal_tensor = audio.convert_audio(output_signal_tensor, self.model.samplerate, sr, 1)
         # convert to numpy array
-        output_signal_tensor = output_signal_tensor[-1].squeeze(0).cpu().numpy() # the last one is vocals
+        output_signal = output_signal_tensor[-1].squeeze(0).cpu().numpy() # the last one is vocals
         
-        return output_signal_tensor
+        return output_signal
     
     
