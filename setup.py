@@ -12,7 +12,7 @@ setup(
     description=__description__,
     author=__author__,
     license=__license__,
-    install_requires=['numpy','torch','torchaudio','demucs','librosa','ffmpeg-python==0.2.0','pywavelets'],
+    install_requires=['numpy','torch','torchaudio','demucs','librosa','ffmpeg-python==0.2.0','pywavelets','onnxruntime'],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
     test_suite='./tests/',
