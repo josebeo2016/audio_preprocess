@@ -26,18 +26,14 @@ class DeNoise:
     outputSignal: np.ndarray
     sample_rate: 16000
     """
-    def __init__(self, inputSignal):
-        self.inputSignal = inputSignal
-        self.outputSignal = None
-
+    def __init__(self):
+        pass
   
-    def process(self, sr=16000) -> np.ndarray:
-        inputSignal = self.inputSignal
-        rate = sr
+    def process(self, inputSignal, sr=16000) -> np.ndarray:
         duration = librosa.get_duration(y=inputSignal, sr=sr)
         output_signal = []
 
-        block_size = int(rate * duration * 0.10)  # Block size as 10% of the duration
+        block_size = int(sr * duration * 0.10)  # Block size as 10% of the duration
 
         for block_start in tqdm(range(0, len(inputSignal), block_size)):
             block_end = block_start + block_size

@@ -1,5 +1,5 @@
 from .speechseperation import SpeechSeperate
-from .denoise_audio import DeNoise
+from .denoise import DeNoise
 from .dereverb import Dereverb
 from .nonspeechtrim import NonspeechTrim
 from .basicnorm import BasicNorm
