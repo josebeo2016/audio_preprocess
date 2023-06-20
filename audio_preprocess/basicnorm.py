@@ -35,7 +35,8 @@ class BasicNorm():
         # convert to mono
         if (len(input_signal.shape) !=1):
             output_signal, sr = audio_to_mono(input_signal, sr)
-        print(output_signal.shape)
+        else:
+            output_signal = input_signal
         # normalize
         # [TODO]
         return output_signal
