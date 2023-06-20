@@ -27,7 +27,7 @@ class BasicNorm():
         file_format = input_path.split('.')[-1]
         if file_format.upper() not in self._supported_format():
             raise ValueError(f"Unsupported file format: {file_format}")
-        audio, sr = librosa.load(input_path, sr, mono=False)
+        audio, sr = librosa.load(input_path, sr=sr, mono=False)
         return audio, sr
         
     
