@@ -1,6 +1,7 @@
 from .speechseperation import SpeechSeperate
 from .denoise_audio import DeNoise
 from .nonspeechtrim import NonspeechTrim
+from .basicnorm import BasicNorm
 from .__version__ import (
     
     __author__,
