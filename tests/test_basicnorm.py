@@ -12,7 +12,7 @@ def test_load_audio():
     bnp = BasicNorm()
     # check unsupported format
     with pytest.raises(Exception) as excinfo:
-        _, _ = bnp.load_audio(os.path.join(BASE_DIR,"data/LA_T_5260333.mp3"))
+        _, _ = bnp.load_audio(os.path.join(BASE_DIR,"data/LA_T_5260333.mp4"))
     assert "Unsupported file format" in str(excinfo.value)
     
     # check load supported format
