@@ -4,7 +4,7 @@ import soundfile as sf
 import numpy as np
 from denoiser.enhance import *
 
-class Dereverb:
+class DeReverb:
     def __init__(self):
         self.model = pretrained.dns48(pretrained=True).to("cpu")
         self.model.eval()

@@ -1,10 +1,10 @@
 import pytest
 import numpy as np
-from audio_preprocess.dereverb import Dereverb
+from audio_preprocess.dereverb import DeReverb
 
 @pytest.fixture
 def dereverb():
-    return Dereverb()
+    return DeReverb()
 
 def test_process(dereverb):
     # Test input signal
