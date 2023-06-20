@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from audio_preprocess.denoise_audio import DeNoise
+from audio_preprocess.denoise import DeNoise
 
 @pytest.mark.filterwarnings
 def test_process():
@@ -8,10 +8,10 @@ def test_process():
     input_signal = np.random.rand(10000)
 
     # Create an instance of the DeNoise class
-    de_noiser = DeNoise(input_signal)
+    de_noiser = DeNoise()
 
     # Process the input signal
-    output_signal = de_noiser.process()
+    output_signal = de_noiser.process(input_signal)
 
     # Check if the output signal has the same length as the input signal
     assert len(output_signal) == len(input_signal)
