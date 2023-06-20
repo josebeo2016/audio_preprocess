@@ -21,4 +21,4 @@ torchaudio==2.0.2
 tqdm==4.65.0
 ffmpeg-python==0.2.0
 onnxruntime
-omegaconf==2.3.0
+# omegaconf==2.3.0 (speech separation) conflicts with hydra-core==0.11.3 (facebook denoiser)
