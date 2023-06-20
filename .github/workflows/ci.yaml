@@ -24,6 +24,9 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Reconfigure git to use HTTP authentication
+      run: >
+        git config --global url."https://github.com/".insteadOf ssh://git@github.com/
     - name: checkout submodules
       run: |
         git submodule sync --recursive
