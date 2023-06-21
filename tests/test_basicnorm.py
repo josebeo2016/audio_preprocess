@@ -1,4 +1,5 @@
 from audio_preprocess import BasicNorm
+from audio_preprocess.basicnorm import audio_to_mono
 import librosa
 import os
 import torch
@@ -34,4 +35,14 @@ def test_basicProcess():
     assert out_signal.shape[0] > 0
     assert not np.allclose(out_signal, 0)
     
-    
+
+
+def test_audio_to_mono():
+    # Generate a stereo audio signal
+    stereo_signal = np.random.rand(2, 1000)
+    # Convert to mono
+    mono_signal, sr = audio_to_mono(stereo_signal)
+    # Check that the resulting signal is mono
+    assert mono_signal.shape == (1000,)
+    # Check that the resulting signal is not all zeros
+    assert not np.allclose(mono_signal, 0)
