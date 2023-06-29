@@ -10,7 +10,7 @@ class NonspeechTrim():
         self.model, utils = torch.hub.load(repo_or_dir='snakers4/silero-vad',
                               model='silero_vad',
                               force_reload=True,
-                              onnx=True)
+                              onnx=False)
 
         (self.get_speech_timestamps,
          _,
