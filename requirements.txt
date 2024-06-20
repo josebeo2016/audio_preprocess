@@ -16,7 +16,7 @@ sounddevice==0.4.6
 soundfile==0.12.1
 torch==2.0.1
 torchaudio==2.0.2
-tqdm==4.65.0
+tqdm==4.66.3
 ffmpeg-python==0.2.0
 onnxruntime
 # omegaconf==2.3.0 (speech separation) conflicts with hydra-core==0.11.3 (facebook denoiser)
