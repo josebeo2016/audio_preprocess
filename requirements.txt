@@ -14,7 +14,7 @@ PyWavelets==1.4.1
 seaborn==0.12.2
 sounddevice==0.4.6
 soundfile==0.12.1
-torch==2.0.1
+torch==2.2.0
 torchaudio==2.0.2
 tqdm==4.66.3
 ffmpeg-python==0.2.0
