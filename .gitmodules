@@ -1,3 +1,6 @@
 [submodule "denoiser"]
 	path = denoiser
 	url = https://github.com/facebookresearch/denoiser.git
+[submodule "audio_preprocess/SEMamba"]
+	path = audio_preprocess/SEMamba
+	url = https://github.com/RoyChao19477/SEMamba.git

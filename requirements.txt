@@ -14,10 +14,16 @@ PyWavelets==1.4.1
 seaborn==0.12.2
 sounddevice==0.4.6
 soundfile==0.12.1
-torch==2.0.1
-torchaudio==2.0.2
 tqdm==4.65.0
 ffmpeg-python==0.2.0
 onnxruntime
+packaging
+pyyaml
+argparse
+tensorboard
+einops
+torch==2.2.2
+torchaudio==2.2.2
+
 # omegaconf==2.3.0 (speech separation) conflicts with hydra-core==0.11.3 (facebook denoiser)
 git+https://github.com/nguyenvulong/denoiser.git@main
