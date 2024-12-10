@@ -3,6 +3,7 @@ from .denoise import DeNoise
 from .dereverb import DeReverb
 from .nonspeechtrim import NonspeechTrim
 from .basicnorm import BasicNorm
+from .denoise_semamba import DeNoise_SEMamba
 from .__version__ import (
     
     __author__,
