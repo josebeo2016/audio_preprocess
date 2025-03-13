@@ -25,6 +25,8 @@ einops
 torch==2.2.2
 torchaudio==2.2.2
 denoiser
+mamba_ssm==1.2.0_post1
+transformers==4.49.0
 # omegaconf==2.3.0 (speech separation) conflicts with hydra-core==0.11.3 (facebook denoiser)
 # git+https://github.com/nguyenvulong/denoiser.git@main
 # denoiser
